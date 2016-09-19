@@ -47,6 +47,28 @@ public class SortTest {
 		int left=from;
 		int right=med+1;
 		//....
+		int[] b = new int[to-from+1];
+		for(int i=0; i < to-from+1; i++) {
+			if(left > med) {
+				b[i] = a[right];
+				right++;
+			} else if(right > to) {
+				b[i] = a[left];
+				left++;
+			} else {
+				if(a[left] < a[right]){
+					b[i] = a[left];
+					left++;
+				} else {
+					b[i] = a[right];
+					right++;
+				}
+			}
+		}
+		
+		for(int i=0; i<to-from+1; i++) {
+			a[from+i] = b[i];
+		}
 	}
 
 	/**
@@ -112,6 +134,12 @@ public class SortTest {
 		System.out.println("sorted? "+sortCheck(a));
 		System.out.println("swap operation needed: "+cnt);		
 		// ok
+		for(int i=1; i<n; i++) {
+			if(a[i-1] > a[i]) {
+				System.out.println("Array isn't sortet properly!");
+				return;
+			}
+		}
 	}
 
 
